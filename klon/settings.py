@@ -4,6 +4,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's$g^n1!&9wg(2^m)ls1&8#vgl3z3_48qb-fi08l&ey&w4$d5kp'
 DEBUG = True
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     'klon.x7ee2gmxun.us-west-2.elasticbeanstalk.com',
     'klongroup.com'
 ]
