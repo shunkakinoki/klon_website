@@ -58,8 +58,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'klon',
         'USER': 'klon',
-        'PASSWORD': 'iEKZMwLQckv94WL',
-        'HOST': 'klon.cxhak5wzdw9g.us-east-1.rds.amazonaws.com',
+        'PASSWORD': '68YSehZhc8Ph8Pd',
+        'HOST': 'klon.cd8iujepsg4q.ap-northeast-1.rds.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -95,8 +95,8 @@ AWS_S3_OBJECT_PARAMETERS = {
 'CacheControl': 'max-age=94608000',
 }
 
-AWS_S3_HOST = "s3-us-west-2.amazonaws.com"
-AWS_STORAGE_BUCKET_NAME = 'klon'
+AWS_S3_HOST = "s3-ap-northeast-1.amazonaws.com"
+AWS_STORAGE_BUCKET_NAME = 'klons3'
 AWS_CLOUDFRONT_DOMAIN = 'd1mpp7ki5jow45.cloudfront.net'
 AWS_S3_REGION_NAME = 'us-west-2'
 AWS_ACCESS_KEY_ID = 'AKIAISP2GY73LRP5AXFQ'
