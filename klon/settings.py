@@ -2,7 +2,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's$g^n1!&9wg(2^m)ls1&8#vgl3z3_48qb-fi08l&ey&w4$d5kp'
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'klon.x7ee2gmxun.us-west-2.elasticbeanstalk.com',
@@ -97,12 +97,12 @@ AWS_S3_OBJECT_PARAMETERS = {
 
 AWS_S3_HOST = "s3-ap-northeast-1.amazonaws.com"
 AWS_STORAGE_BUCKET_NAME = 'klons3'
-AWS_CLOUDFRONT_DOMAIN = 'd1mpp7ki5jow45.cloudfront.net'
+AWS_CLOUDFRONT_DOMAIN = 'd2ec47gai1sijw.cloudfront.net'
 AWS_S3_REGION_NAME = 'us-west-2'
 AWS_ACCESS_KEY_ID = 'AKIAISP2GY73LRP5AXFQ'
 AWS_SECRET_ACCESS_KEY = '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'
 
-AWS_S3_CUSTOM_DOMAIN = 'd1mpp7ki5jow45.cloudfront.net'
+AWS_S3_CUSTOM_DOMAIN = 'd2ec47gai1sijw.cloudfront.net'
 AWS_S3_FILE_OVERWRITE = False
 
 MEDIAFILES_LOCATION = 'media'
