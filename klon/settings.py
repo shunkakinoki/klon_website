@@ -6,6 +6,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'klon.ap-northeast-1.elasticbeanstalk.com',
+    'd2lsr90acgtyop.cloudfront.net',
     'klongroup.com'
 ]
 
