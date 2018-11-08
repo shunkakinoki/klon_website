@@ -94,6 +94,7 @@ class Food(models.Model):
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     uuid_url         = models.URLField(max_length=200, null=True, blank=True)
     restaurant       = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant_foods')
+    restaurant_url   = models.URLField(max_length=200, null=True, blank=True)
     name             = models.CharField(max_length=128)
     created_date     = models.DateField(auto_now_add=True)
     created_datetime = models.DateTimeField(auto_now_add=True)
@@ -118,7 +119,9 @@ class Food(models.Model):
 
     def save(self, *args, **kwargs):
         uuid = self.uuid 
+        restaurant_uuid = self.restaurant.uuid
         self.uuid_url = "http://klongroup.com/api/foods/" + str(uuid)
+        self.restaurant_url = "http://klongroup.com/api/restaurants/" + str(restaurant_uuid)
         super(Food, self).save(*args, **kwargs)
 
 
@@ -134,7 +137,9 @@ class FoodOption(models.Model):
         return 'file/foodoption/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    uuid_url         = models.URLField(max_length=200, null=True, blank=True)    
     food             = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='food_foodoptions')
+    food_url         = models.URLField(max_length=200, null=True, blank=True)
     name             = models.CharField(max_length=128)
     created_date     = models.DateField(auto_now_add=True)
     created_datetime = models.DateTimeField(auto_now_add=True)
@@ -150,6 +155,13 @@ class FoodOption(models.Model):
     image_3          = models.ImageField(upload_to=foodoption_image_path, null=True, blank=True)
     video            = models.FileField(upload_to=foodoption_file_path, null=True, blank=True)
     video_urllink    = models.URLField(max_length=200, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        uuid = self.uuid
+        food_uuid = self.food.uuid 
+        self.uuid_url = "http://klongroup.com/api/foodoptions/" + str(uuid)
+        self.food_url = "http://klongroup.com/api/foods/" + str(food_uuid)
+        super(FoodOption, self).save(*args, **kwargs)
     
     def __str__(self):
         return self.name

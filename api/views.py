@@ -1,6 +1,11 @@
 from rest_framework import generics
 from .models import Restaurant, Food, FoodOption
-from .serializers import RestaurantSerializer, RestaurantSpecificSerializer, FoodSpecificSerializer
+from .serializers import (
+    RestaurantSerializer, 
+    RestaurantSpecificSerializer, 
+    FoodSpecificSerializer, 
+    FoodOptionSpecificSerializer
+)
 from django.db.models import Q
 
 class RestaurantListView(generics.ListAPIView):
@@ -33,4 +38,17 @@ class FoodSpecificView(generics.RetrieveAPIView):
             qs = qs.filter(
                 Q(uuid__iexact=query)
             )
-        return qs  
+        return qs
+
+class FoodOptionSpecificView(generics.RetrieveAPIView):
+    lookup_field        = 'uuid'
+    serializer_class    = FoodOptionSpecificSerializer
+
+    def get_queryset(self):
+        qs = Food.objects.all()
+        query = self.request.GET.get("uuid")
+        if query is not None:
+            qs = qs.filter(
+                Q(uuid__iexact=query)
+            )
+        return qs    

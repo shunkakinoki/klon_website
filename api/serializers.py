@@ -8,7 +8,15 @@ class RestaurantSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class FoodOptionSpecificSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FoodOption
+        fields = '__all__'
+
+        
 class FoodSpecificSerializer(serializers.ModelSerializer):
+    food_foodoptions = FoodOptionSpecificSerializer(many=True, read_only=True)
+
     class Meta:
         model = Food
         fields = '__all__'
@@ -22,7 +30,3 @@ class RestaurantSpecificSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class FoodOptionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = FoodOption
-        fields = '__all__'
