@@ -25,6 +25,7 @@ class Restaurant(models.Model):
         return 'file/restaurant/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    uuid_url         = models.URLField(max_length=200, null=True, blank=True)
     name             = models.CharField(max_length=128)
     created_date     = models.DateField(auto_now_add=True)
     created_datetime = models.DateTimeField(auto_now_add=True)
@@ -73,6 +74,11 @@ class Restaurant(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        uuid = self.uuid 
+        self.uuid_url = "http://klongroup.com/api/restaurants/" + str(uuid)
+        super(Restaurant, self).save(*args, **kwargs)
+
 
 class Food(models.Model):
     """
@@ -86,7 +92,8 @@ class Food(models.Model):
         return 'file/food/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
-    restaurant       = models.ForeignKey(Restaurant, on_delete=models.CASCADE)
+    uuid_url         = models.URLField(max_length=200, null=True, blank=True)
+    restaurant       = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant_foods')
     name             = models.CharField(max_length=128)
     created_date     = models.DateField(auto_now_add=True)
     created_datetime = models.DateTimeField(auto_now_add=True)
@@ -109,6 +116,11 @@ class Food(models.Model):
     def __str__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        uuid = self.uuid 
+        self.uuid_url = "http://klongroup.com/api/foods/" + str(uuid)
+        super(Food, self).save(*args, **kwargs)
+
 
 class FoodOption(models.Model):
     """
@@ -122,7 +134,7 @@ class FoodOption(models.Model):
         return 'file/foodoption/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
-    food             = models.ForeignKey(Food, on_delete=models.CASCADE)
+    food             = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='food_foodoptions')
     name             = models.CharField(max_length=128)
     created_date     = models.DateField(auto_now_add=True)
     created_datetime = models.DateTimeField(auto_now_add=True)

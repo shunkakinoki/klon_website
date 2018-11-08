@@ -1,9 +1,10 @@
+from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path
-from .views import RestaurantRUView, FoodRUView, FoodOptionRUView
+from .views import RestaurantListView, RestaurantSpecificView, FoodSpecificView
 
 urlpatterns = [
-    path('restaurant/<uuid:uuid>/', RestaurantRUView.as_view(), name='api-restaurant'),
-    path('food/<uuid:uuid>/', FoodRUView.as_view(), name='api-food'),
-    path('foodoption/<uuid:uuid>/', FoodOptionRUView.as_view(), name='api-food'),
+    path('restaurants/', RestaurantListView.as_view(), name='api-restaurants'),
+    path('restaurants/<uuid:uuid>/', RestaurantSpecificView.as_view(), name='api-specific-restaurants'),
+    path('foods/<uuid:uuid>/', FoodSpecificView.as_view(), name='api-specific-foods'),
 ]
