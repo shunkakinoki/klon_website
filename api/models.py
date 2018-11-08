@@ -19,10 +19,10 @@ class Restaurant(models.Model):
     """
 
     def restaurant_image_path(instance, filename):
-        return 'image/restaurant/{0}/{1}'.format(instance.uuid, filename)
+        return 'images/restaurants/{0}/{1}'.format(instance.uuid, filename)
 
     def restaurant_file_path(instance, filename):
-        return 'file/restaurant/{0}/{1}'.format(instance.uuid, filename)
+        return 'files/restaurants/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     uuid_url         = models.URLField(max_length=200, null=True, blank=True)
@@ -86,10 +86,10 @@ class Food(models.Model):
     """
 
     def food_image_path(instance, filename):
-        return 'image/food/{0}/{1}'.format(instance.uuid, filename)
+        return 'images/foods/{0}/{1}'.format(instance.uuid, filename)
 
     def food_file_path(instance, filename):
-        return 'file/food/{0}/{1}'.format(instance.uuid, filename)
+        return 'files/foods/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     uuid_url         = models.URLField(max_length=200, null=True, blank=True)
@@ -131,10 +131,10 @@ class FoodOption(models.Model):
     """
 
     def foodoption_image_path(instance, filename):
-        return 'image/foodoption/{0}/{1}'.format(instance.uuid, filename)
+        return 'images/foodoptions/{0}/{1}'.format(instance.uuid, filename)
     
     def foodoption_file_path(instance, filename):
-        return 'file/foodoption/{0}/{1}'.format(instance.uuid, filename)
+        return 'files/foodoptions/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     uuid_url         = models.URLField(max_length=200, null=True, blank=True)    
