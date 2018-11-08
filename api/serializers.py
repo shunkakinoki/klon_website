@@ -15,11 +15,13 @@ class FoodSpecificSerializer(serializers.ModelSerializer):
 
 
 class RestaurantSpecificSerializer(serializers.ModelSerializer):
+    restaurant_foods = FoodSpecificSerializer(many=True, read_only=True)
+
     class Meta:
         model = Restaurant
         fields = '__all__'
 
-  
+
 class FoodOptionSerializer(serializers.ModelSerializer):
     class Meta:
         model = FoodOption

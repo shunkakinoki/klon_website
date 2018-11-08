@@ -22,13 +22,13 @@ class RestaurantSpecificView(generics.RetrieveAPIView):
             )
         return qs
 
-class FoodSpecificView(generics.ListAPIView):
+class FoodSpecificView(generics.RetrieveAPIView):
     lookup_field        = 'uuid'
     serializer_class    = FoodSpecificSerializer
 
     def get_queryset(self):
         qs = Food.objects.all()
-        query = self.request.GET.get("q")
+        query = self.request.GET.get("uuid")
         if query is not None:
             qs = qs.filter(
                 Q(uuid__iexact=query)
