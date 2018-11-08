@@ -4,19 +4,18 @@ from .serializers import RestaurantSerializer, RestaurantSpecificSerializer, Foo
 from django.db.models import Q
 
 class RestaurantListView(generics.ListAPIView):
-    lookup_field        = 'uuid'
     serializer_class    = RestaurantSerializer
 
     def get_queryset(self):
         return Restaurant.objects.all()
 
-class RestaurantSpecificView(generics.ListAPIView):
+class RestaurantSpecificView(generics.RetrieveAPIView):
     lookup_field        = 'uuid'
     serializer_class    = RestaurantSpecificSerializer
 
     def get_queryset(self):
         qs = Restaurant.objects.all()
-        query = self.request.GET.get("q")
+        query = self.request.GET.get("uuid")
         if query is not None:
             qs = qs.filter(
                 Q(uuid__iexact=query)
