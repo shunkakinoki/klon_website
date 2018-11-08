@@ -45,7 +45,7 @@ class FoodOptionSpecificView(generics.RetrieveAPIView):
     serializer_class    = FoodOptionSpecificSerializer
 
     def get_queryset(self):
-        qs = Food.objects.all()
+        qs = FoodOption.objects.all()
         query = self.request.GET.get("uuid")
         if query is not None:
             qs = qs.filter(
