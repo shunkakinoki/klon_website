@@ -48,7 +48,7 @@ class Restaurant(models.Model):
 
     open_day         = MultiSelectField(
         choices=WEEKDAYS,
-        unique=True,
+        unique=False,
         max_choices=7,
         max_length=7,
         null=True,
