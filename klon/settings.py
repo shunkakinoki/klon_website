@@ -11,19 +11,20 @@ ALLOWED_HOSTS = [
 ]
 
 INSTALLED_APPS = [
+    'home.apps.HomeConfig',
+    'api.apps.ApiConfig',
+
+    'django_filters',
+    'rest_framework',
+    'storages',
+    'multiselectfield',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'home.apps.HomeConfig',
-    'api.apps.ApiConfig',
-
-    'rest_framework',
-    'storages',
-    'multiselectfield'
 ]
 
 MIDDLEWARE = [
@@ -48,7 +49,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages'
             ],
         },
     },
@@ -86,9 +87,15 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 10
 }
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+)
 
 LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'Asia/Tokyo'
