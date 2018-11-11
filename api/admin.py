@@ -22,10 +22,13 @@ class FoodAdmin(admin.ModelAdmin):
     inlines = [
         FoodOptionInline,
     ]
+    list_display = ('name', 'restaurant', )
     readonly_fields = ('uuid', 'uuid_url', 'restaurant_url')
 
 class FoodOptionAdmin(admin.ModelAdmin):
     readonly_fields = ('uuid', 'uuid_url', 'food_url')
+    list_display = ('name', 'food', )
+
 
 admin.site.register(Restaurant, RestaurantAdmin)
 admin.site.register(Food, FoodAdmin)
