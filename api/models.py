@@ -76,7 +76,7 @@ class Restaurant(models.Model):
 
     def save(self, *args, **kwargs):
         uuid = self.uuid
-        self.uuid_url = "http://klongroup.com/api/restaurants/" + str(uuid)
+        self.uuid_url = "https://klongroup.com/api/restaurants/" + str(uuid)
         super(Restaurant, self).save(*args, **kwargs)
 
 
@@ -120,8 +120,8 @@ class Food(models.Model):
     def save(self, *args, **kwargs):
         uuid = self.uuid
         restaurant_uuid = self.restaurant.uuid
-        self.uuid_url = "http://klongroup.com/api/foods/" + str(uuid)
-        self.restaurant_url = "http://klongroup.com/api/restaurants/" + str(restaurant_uuid)
+        self.uuid_url = "https://klongroup.com/api/foods/" + str(uuid)
+        self.restaurant_url = "https://klongroup.com/api/restaurants/" + str(restaurant_uuid)
         super(Food, self).save(*args, **kwargs)
 
 
@@ -159,8 +159,8 @@ class FoodOption(models.Model):
     def save(self, *args, **kwargs):
         uuid = self.uuid
         food_uuid = self.food.uuid
-        self.uuid_url = "http://klongroup.com/api/foodoptions/" + str(uuid)
-        self.food_url = "http://klongroup.com/api/foods/" + str(food_uuid)
+        self.uuid_url = "https://klongroup.com/api/foodoptions/" + str(uuid)
+        self.food_url = "https://klongroup.com/api/foods/" + str(food_uuid)
         super(FoodOption, self).save(*args, **kwargs)
 
     def __str__(self):
