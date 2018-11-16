@@ -92,8 +92,10 @@ class Food(models.Model):
         return 'files/foods/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    uuid_admin       = models.URLField(max_length=200, null=True, blank=True)
     uuid_url         = models.URLField(max_length=200, null=True, blank=True)
     restaurant       = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name='restaurant_foods')
+    restaurant_admin = models.URLField(max_length=200, null=True, blank=True)
     restaurant_url   = models.URLField(max_length=200, null=True, blank=True)
     name             = models.CharField(max_length=128)
     created_date     = models.DateField(auto_now_add=True)
@@ -120,7 +122,9 @@ class Food(models.Model):
     def save(self, *args, **kwargs):
         uuid = self.uuid
         restaurant_uuid = self.restaurant.uuid
+        self.uuid_admin = "https://klongroup.com/admin/api/food/" + str(uuid)
         self.uuid_url = "https://klongroup.com/api/foods/" + str(uuid)
+        self.restaurant_admin = "https://klongroup.com/admin/api/restaurant/" + str(restaurant_uuid)
         self.restaurant_url = "https://klongroup.com/api/restaurants/" + str(restaurant_uuid)
         super(Food, self).save(*args, **kwargs)
 
@@ -137,8 +141,10 @@ class FoodOption(models.Model):
         return 'files/foodoptions/{0}/{1}'.format(instance.uuid, filename)
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+    uuid_admin       = models.URLField(max_length=200, null=True, blank=True)
     uuid_url         = models.URLField(max_length=200, null=True, blank=True)
     food             = models.ForeignKey(Food, on_delete=models.CASCADE, related_name='food_foodoptions')
+    food_admin       = models.URLField(max_length=200, null=True, blank=True)
     food_url         = models.URLField(max_length=200, null=True, blank=True)
     name             = models.CharField(max_length=128)
     created_date     = models.DateField(auto_now_add=True)
@@ -159,7 +165,9 @@ class FoodOption(models.Model):
     def save(self, *args, **kwargs):
         uuid = self.uuid
         food_uuid = self.food.uuid
+        self.uuid_admin = "https://klongroup.com/admin/api/foodoption/" + str(uuid)
         self.uuid_url = "https://klongroup.com/api/foodoptions/" + str(uuid)
+        self.food_admin = "https://klongroup.com/admin/api/food/" + str(food_uuid)
         self.food_url = "https://klongroup.com/api/foods/" + str(food_uuid)
         super(FoodOption, self).save(*args, **kwargs)
 
