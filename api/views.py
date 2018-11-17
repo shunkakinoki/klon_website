@@ -11,7 +11,7 @@ from rest_framework import filters
 
 
 class RestaurantListView(generics.ListAPIView):
-    serializer_class    = RestaurantSerializer
+    serializer_class = RestaurantSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = (
         'name',
