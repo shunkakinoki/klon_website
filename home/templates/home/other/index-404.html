@@ -1,3 +1,6 @@
+{% load static %}
+{% csrf_token %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +32,7 @@
 	<meta name="twitter:description" content="A description that concisely summarizes the content of the page, as appropriate for presentation within a Tweet. Do not re-use the title text as the description, or use this field to describe the general services provided by the website. Description text will be truncated at the word to 200 characters.">
 	<meta name="twitter:image" content="URL to a unique image representing the content of the page. Do not use a generic image such as your website logo, author photo, or other image that spans multiple pages. Images for this Card should be at least 280px in width, and at least 150px in height. Image must be less than 1MB in size."> -->
 
-	<title>404 Page Demo | The First Draft - Free HTML Template</title>
+	<title>404</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
 	<link rel="stylesheet" href="{% static 'home/css/main.css' %}">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -49,12 +52,9 @@
 	<div class="content-wrapper">
 		<div class="v-center">
 			<div class="main-content">
-				<h3 class="mt-0">Looks like you're lost...</h3>
-				<p>404. The page you were looking for appears to have been moved, deleted or does not exist. Here are some useful links instead...</p>
+				<h3 class="mt-0">Page Not Found. 404.</h3>
 				<ul>
-					<li><a href="https://goo.gl/zkPUeZ">Home</a></li>
-					<li><a href="https://goo.gl/zkPUeZ">Search</a></li>
-					<li><a href="mailto:svencreations@gmail.com">Contact</a></li>
+					<li><a href="{% url 'home:home' %}">Home</a></li>
 				</ul>
 			</div>
 		</div>
