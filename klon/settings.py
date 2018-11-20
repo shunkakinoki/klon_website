@@ -4,10 +4,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's$g^n1!&9wg(2^m)ls1&8#vgl3z3_48qb-fi08l&ey&w4$d5kp'
 DEBUG = False
 ALLOWED_HOSTS = [
+    'localhost',
     '127.0.0.1',
     'klon.ap-northeast-1.elasticbeanstalk.com',
     'd2lsr90acgtyop.cloudfront.net',
-    'klongroup.com'
+    'klongroup.com',
 ]
 
 INSTALLED_APPS = [
@@ -106,8 +107,9 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ],
     'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
@@ -119,6 +121,9 @@ CORS_ORIGIN_WHITELIST = (
     '127.0.0.1:8000',
     'klongroup.com'
 )
+
+REST_USE_JWT = True
+REST_SESSION_LOGIN = False
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
