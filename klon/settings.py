@@ -17,6 +17,7 @@ INSTALLED_APPS = [
     'django_filters',
     'storages',
     'multiselectfield',
+    'corsheaders',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -39,6 +40,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -121,7 +123,11 @@ USE_TZ = True
 CSRF_COOKIE_SECURE = True
 CSRF_USE_SESSIONS = True
 
-CORS_ORIGIN_WHITELIST = 'localhost:8000',
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8000',
+    '127.0.0.1:8000',
+    'klongroup.com'
+)
 
 AWS_S3_OBJECT_PARAMETERS = {
 'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
