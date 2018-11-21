@@ -37,7 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SITE_ID = 1
 
 MIDDLEWARE = [
@@ -124,6 +123,13 @@ CORS_ORIGIN_WHITELIST = (
 
 REST_USE_JWT = True
 REST_SESSION_LOGIN = False
+
+EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
+EMAIL_HOST = 'email-smtp.us-west-2.amazonaws.com'
+EMAIL_PORT = 465
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'AKIAJQF3LEPENNUVGRHA'
+EMAIL_HOST_PASSWORD = 'Aqw55LzzfNfYznrzW382S2Lg3oVxEkMQ5sGCmhLq/hvZ'
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
