@@ -3,6 +3,8 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's$g^n1!&9wg(2^m)ls1&8#vgl3z3_48qb-fi08l&ey&w4$d5kp'
 DEBUG = False
+ADMINS = [('Shun', 'klon.unicorn@gmail.com')]
+MANAGERS = ADMINS
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
@@ -124,6 +126,8 @@ CORS_ORIGIN_WHITELIST = (
 REST_USE_JWT = True
 REST_SESSION_LOGIN = False
 
+DEFAULT_FROM_EMAIL = 'admin@klongroup.com'
+SERVER_EMAIL = 'admin@klongroup.com'
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
 EMAIL_HOST = 'email-smtp.us-west-2.amazonaws.com'
 EMAIL_PORT = 465
@@ -171,3 +175,42 @@ STATIC_URL = '//%s/%s/' % (AWS_CLOUDFRONT_DOMAIN, STATICFILES_LOCATION)
 STATICFILES_STORAGE = 'custom_storages.StaticStorage'
 
 AWS_DEFAULT_ACL = None
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'formatters': {
+        'verbose': {
+            'format': '[contactor] %(levelname)s %(asctime)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+        },
+        'syslog':{
+            'level':'INFO',
+            'class': 'logging.handlers.SysLogHandler',
+            'address': '/dev/log',
+            'formatter': 'verbose',
+        },
+        'mail_admins': {
+            'level': 'WARNING',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'syslog', 'mail_admins', ],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+    }
+}
