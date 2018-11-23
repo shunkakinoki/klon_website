@@ -200,11 +200,6 @@ LOGGING = {
             'address': '/dev/log',
             'formatter': 'verbose',
         },
-        'mail_admins': {
-            'level': 'WARNING',
-            'filters': ['require_debug_false'],
-            'class': 'django.utils.log.AdminEmailHandler',
-        },
     },
     'loggers': {
         '': {
