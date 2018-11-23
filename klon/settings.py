@@ -203,7 +203,7 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers': ['console', 'syslog', 'mail_admins', ],
+            'handlers': ['console', 'syslog', ],
             'level': 'DEBUG',
             'propagate': False,
         },
