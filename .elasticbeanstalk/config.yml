@@ -1,6 +1,6 @@
 branch-defaults:
   dev:
-    environment: klon-website
+    environment: klon-dev
   master:
     environment: klon-website
 environment-defaults:
