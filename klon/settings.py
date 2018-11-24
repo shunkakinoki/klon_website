@@ -129,6 +129,10 @@ CORS_ORIGIN_WHITELIST = (
 REST_USE_JWT = True
 REST_SESSION_LOGIN = False
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'api.serializers.UserSerializer'
+}
+
 DEFAULT_FROM_EMAIL = 'admin@klongroup.com'
 SERVER_EMAIL = 'admin@klongroup.com'
 EMAIL_BACKEND = 'django_smtp_ssl.SSLEmailBackend'
