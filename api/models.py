@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.conf import settings
 from multiselectfield import MultiSelectField
+from phonenumber_field.modelfields import PhoneNumberField
 import uuid
 
 WEEKDAYS = [
@@ -12,6 +14,11 @@ WEEKDAYS = [
   (6, ("Saturday")),
   (7, ("Sunday")),
 ]
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # custom fields for user
+    phone_number = PhoneNumberField()
 
 class Restaurant(models.Model):
     """

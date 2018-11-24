@@ -12,6 +12,7 @@ ALLOWED_HOSTS = [
     'd2lsr90acgtyop.cloudfront.net',
     'klongroup.com',
 ]
+ALLOWED_CIDR_NETS = ['172.31.0.0/16',]
 
 INSTALLED_APPS = [
     'home.apps.HomeConfig',
@@ -21,6 +22,7 @@ INSTALLED_APPS = [
     'storages',
     'multiselectfield',
     'corsheaders',
+    'phonenumber_field',
 
     'rest_framework',
     'rest_framework.authtoken',
@@ -43,6 +45,7 @@ SITE_ID = 1
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'allow_cidr.middleware.AllowCIDRMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
