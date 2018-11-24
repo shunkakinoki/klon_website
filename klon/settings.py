@@ -8,7 +8,7 @@ MANAGERS = ADMINS
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'klon-website.ap-northeast-1.elasticbeanstalk.com',
+    'klon-production.ap-northeast-1.elasticbeanstalk.com',
     'd2lsr90acgtyop.cloudfront.net',
     'klongroup.com',
 ]
