@@ -123,7 +123,7 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_WHITELIST = (
     'localhost:8000',
     '127.0.0.1:8000',
-    'klon-website.ap-northeast-1.elasticbeanstalk.com',
+    'klon-production.ap-northeast-1.elasticbeanstalk.com',
     'd2lsr90acgtyop.cloudfront.net',
     'klongroup.com',
 )
