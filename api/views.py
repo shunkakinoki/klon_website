@@ -9,6 +9,16 @@ from .serializers import (
 from django.db.models import Q
 from rest_framework import filters
 
+class NearbyRestaurantListView(generics.ListAPIView):
+    serializer_class = RestaurantSerializer
+
+    def get_queryset(self):
+        latitude = self.request.query_params.get('latitude', None)
+        longitude = self.request.query_params.get('longitude', None)
+        proximity = self.request.query_params.get('proximity', 20)
+
+        queryset = Restaurant.objects.nearby(latitude, longitude, proximity)
+        return queryset
 
 class RestaurantListView(generics.ListAPIView):
     serializer_class = RestaurantSerializer

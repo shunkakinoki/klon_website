@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.db.models.expressions import RawSQL
 
 from multiselectfield import MultiSelectField
 from phonenumber_field.modelfields import PhoneNumberField
@@ -34,6 +35,29 @@ def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
 
 
+class RestaurantManager(models.Manager):
+    def nearby(self, latitude, longitude, proximity):
+        """
+        Return all object which distance to specified coordinates
+        is less than proximity given in kilometers
+        """
+        # Great circle distance formula
+        gcd = """
+              6371 * acos(
+               cos(radians(%s)) * cos(radians(latitude))
+               * cos(radians(longitude) - radians(%s)) +
+               sin(radians(%s)) * sin(radians(latitude))
+              )
+              """
+        return self.get_queryset()\
+                   .exclude(latitude=None)\
+                   .exclude(longitude=None)\
+                   .annotate(distance=RawSQL(gcd, (latitude,
+                                                   longitude,
+                                                   latitude)))\
+                   .filter(distance__lt=proximity)\
+                   .order_by('distance')
+
 class Restaurant(models.Model):
     """
     The base model class for restaurant
@@ -44,6 +68,9 @@ class Restaurant(models.Model):
 
     def restaurant_file_path(instance, filename):
         return 'files/restaurants/{0}/{1}'.format(instance.uuid, filename)
+
+
+    objects = RestaurantManager()
 
     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
     uuid_url         = models.URLField(max_length=200, null=True, blank=True)
