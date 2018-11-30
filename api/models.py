@@ -41,7 +41,6 @@ class RestaurantManager(models.Manager):
         Return all object which distance to specified coordinates
         is less than proximity given in kilometers
         """
-        # Great circle distance formula
         gcd = """
               6371 * acos(
                cos(radians(%s)) * cos(radians(latitude))
@@ -57,6 +56,7 @@ class RestaurantManager(models.Manager):
                                                    latitude)))\
                    .filter(distance__lt=proximity)\
                    .order_by('distance')
+
 
 class Restaurant(models.Model):
     """
