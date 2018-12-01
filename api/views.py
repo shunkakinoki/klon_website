@@ -1,6 +1,7 @@
 from rest_framework import generics
 from .models import Restaurant, Food, FoodOption
 from .serializers import (
+    NearbyRestaurantSerializer,
     RestaurantSerializer,
     RestaurantSpecificSerializer,
     FoodSpecificSerializer,
@@ -10,7 +11,7 @@ from django.db.models import Q
 from rest_framework import filters
 
 class NearbyRestaurantListView(generics.ListAPIView):
-    serializer_class = RestaurantSerializer
+    serializer_class = NearbyRestaurantSerializer
 
     def get_queryset(self):
         latitude = self.request.query_params.get('latitude', None)

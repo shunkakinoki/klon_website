@@ -127,6 +127,8 @@ class Restaurant(models.Model):
         self.uuid_url = "https://klongroup.com/api/restaurants/" + str(uuid)
         super(Restaurant, self).save(*args, **kwargs)
 
+    def distance(self):
+        return self.distance
 
 class Food(models.Model):
     """

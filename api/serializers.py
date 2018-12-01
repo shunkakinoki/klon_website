@@ -26,6 +26,38 @@ class UserSerializer(UserDetailsSerializer):
             profile.save()
         return instance
 
+class NearbyRestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = (
+            'distance',
+            'uuid',
+            'uuid_url',
+            'name',
+            'created_date',
+            'created_datetime',
+            'homepage_urllink',
+            'rating',
+            'description',
+            'features',
+            'cuisine',
+            'email',
+            'phone',
+            'address',
+            'post_code',
+            'image_1',
+            'image_2',
+            'image_3',
+            'video',
+            'video_urllink',
+            'open_day',
+            'open_from_hour',
+            'open_to_hour',
+            'place_urllink',
+            'longitude',
+            'latitude',
+            )
+
 class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
