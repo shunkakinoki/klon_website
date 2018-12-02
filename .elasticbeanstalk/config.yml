@@ -1,6 +1,8 @@
 branch-defaults:
   dev:
     environment: klon-production
+  master:
+    environment: klon-production
 environment-defaults:
   klon-website:
     branch: null
