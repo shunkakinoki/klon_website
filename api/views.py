@@ -16,7 +16,7 @@ class NearbyRestaurantListView(generics.ListAPIView):
     def get_queryset(self):
         latitude = self.request.query_params.get('latitude', None)
         longitude = self.request.query_params.get('longitude', None)
-        proximity = self.request.query_params.get('proximity', 20)
+        proximity = self.request.query_params.get('proximity', 50)
 
         queryset = Restaurant.objects.nearby(latitude, longitude, proximity)
         return queryset

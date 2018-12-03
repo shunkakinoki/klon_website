@@ -223,3 +223,27 @@ class FoodOption(models.Model):
 
     def __str__(self):
         return self.name
+
+# class Order(models.Model):
+#     """
+#     The model class for food option
+#     """
+
+#     uuid             = models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True)
+#     uuid_admin       = models.URLField(max_length=200, null=True, blank=True)
+#     uuid_url         = models.URLField(max_length=200, null=True, blank=True)
+#     created_date     = models.DateField(auto_now_add=True)
+#     created_datetime = models.DateTimeField(auto_now_add=True)
+
+#     description      = models.CharField(max_length=512, null=True, blank=True)
+
+#     total_price      = models.PositiveIntegerField(null=True, blank=True)
+
+#     def save(self, *args, **kwargs):
+#         uuid = self.uuid
+#         self.uuid_admin = "https://klongroup.com/admin/api/order/" + str(uuid)
+#         self.uuid_url = "https://klongroup.com/api/orders/" + str(uuid)
+#         super(FoodOption, self).save(*args, **kwargs)
+
+#     def __str__(self):
+#         return self.created_date
